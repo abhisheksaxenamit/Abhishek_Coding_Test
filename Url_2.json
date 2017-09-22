@@ -1,1 +1,1 @@
-{"Url": "http://www.bbc.co.uk/missing/thing", "Status_code": 404}
+{"Url": "bad://address", "Error": "Invalid url"}
