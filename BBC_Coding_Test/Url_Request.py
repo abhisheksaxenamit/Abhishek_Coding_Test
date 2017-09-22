@@ -4,14 +4,12 @@ import Url_Validate as uv
 
 ## Storing json for only valid urls.
 ## Trying to look at the information in Header and looking at Status Code
-##HeaderFile = open('Header.txt','w')
-##Output={}
 count=0
 s_code={}
 time_out=0
 data={}
 sc_lst=[{'Status_Code': 200, 'Number_of_responses': 0},{'Status_Code': 404, 'Number_of_responses': 0}]
-with open('Input.txt','r') as inp:
+with open('../Input.txt','r') as inp:
     for url in inp:
     ## removing white spaces in the end of the line      
         url=url.rstrip()
@@ -39,12 +37,12 @@ with open('Input.txt','r') as inp:
             else:
                 data={'Url' : url, 'Error' : 'Invalid url'}
             ##Writing into the Json file
-            f_name= 'Url_'+str(count)+'.json'
+            f_name= '../output/Url_'+str(count)+'.json'
             count=count+1
 ##            print(f_name)
             with open(f_name, 'w') as outfile:
                 json.dump(data, outfile)
-            with open('Summary.json','w') as s:
+            with open('../output/Summary.json','w') as s:
                 json.dump(sc_lst,s)
         except:
                 print("ERROR!!")
