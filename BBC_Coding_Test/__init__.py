@@ -1,6 +1,7 @@
 import requests
 import json
 import Url_Validate as uv
+import sys
 
 ## Storing json for only valid urls.
 ## Trying to look at the information in Header and looking at Status Code
@@ -19,7 +20,7 @@ with open('../Input.txt','r') as inp:
                 try:
                     r = requests.get(url, timeout=10)
                 except requests.exceptions.Timeout:
-                    print("TIMEOUT!!!")
+                    print("Timeout Occurred for uri ",url,file=sys.stderr)
                     time_out=1
                 if(time_out == 0):
                     sc_lst=uv.status_code_lst(r.status_code,sc_lst)
@@ -44,5 +45,5 @@ with open('../Input.txt','r') as inp:
                 json.dump(data, outfile)
             with open('../output/Summary.json','w') as s:
                 json.dump(sc_lst,s)
-        except:
-                print("ERROR!!")
+        except Exception as e:
+                print(e,file=sys.stderr)
