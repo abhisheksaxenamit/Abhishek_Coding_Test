@@ -9,20 +9,20 @@ Dependencies:
     
 To install all dependencies:
   - Extract the files and go inside BBC_Coding_Test to check for setup.py
-  - execute: pip install -e <Local path to setup.py>
+  - execute: 'pip install -e ```<Local path to setup.py>```'
   
 To run the code analysis:
   - Here Input.txt contains all the urls that need to be verified.
   - cd BBC_Coding_Test
-  - execute: python __init__.py
+  - execute: 'python __init__.py'
   - Json files are created in the ../output/ folder
-      - for each url 'Url_<i>.json' 
-      - 'summary.json' has all the status code analysis.
+      - for each url Url_<i>.json 
+      - summary.json has all the status code analysis.
   - logs for error are created in the ../logs/logs_error.txt
   
 
 To check the unit test case inside BBC_Coding_test:
-  - execute: python test_pro.py
-  - the input for all invalid urls are taken from 'invalid_urls.txt'
-  - unit_test_result are created in the '../logs/unit_test_results.txt'.
-  - logs for unit testing are created in '../logs/logs_testing.txt'
+  - execute: 'python test_pro.py'
+  - the input for all invalid urls are taken from invalid_urls.txt
+  - unit_test_result are created in the ../logs/unit_test_results.txt.
+  - logs for unit testing are created in ../logs/logs_testing.txt
