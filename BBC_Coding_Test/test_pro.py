@@ -14,8 +14,9 @@ class TestUri(unittest.TestCase):
         result = uv.validate_url(uri)
         try:
             self.assertEqual(result, 0)
+            print("test_uri_no_scheme : Pass", file = sys.stdout)
         except AssertionError:
-            print("test_uri_no_scheme Test Case failed", file = sys.stderr)
+            print("test_uri_no_scheme : Failed", file = sys.stdout)
 
     def test_uri_wrong_scheme(self):
         '''
@@ -26,21 +27,22 @@ class TestUri(unittest.TestCase):
         result = uv.validate_url(uri)
         try:
             self.assertEqual(result, 0)
+            print("test_uri_wrong_scheme : Pass", file = sys.stdout)
         except AssertionError:
-            print("test_uri_wrong_scheme Test Case failed", file = sys.stderr)
+            print("test_uri_wrong_scheme : Failed", file = sys.stdout)
             
 
-    def test_uri_wrong_tld(self):
-        '''
-            Validating Uris with no netloc tld i.e .com, .net etc
-            O/p Expected 0 i.e. tld is wrong
-        '''
-        uri='http://bbc1234'
-        result = uv.validate_url(uri)
-        try:
-            self.assertEqual(result, 0)
-        except AssertionError:
-            print("test_uri_wrong_tld Test Case failed", file = sys.stderr)
+##    def test_uri_wrong_tld(self):
+##        '''
+##            Validating Uris with no netloc tld i.e .com, .net etc
+##            O/p Expected 0 i.e. tld is wrong
+##        '''
+##        uri='http://bbc1234'
+##        result = uv.validate_url(uri)
+##        try:
+##            self.assertEqual(result, 0)
+##        except AssertionError:
+##            print("test_uri_wrong_tld Test Case failed", file = sys.stderr)
 
     def test_uri_invalid_char(self):
         '''
@@ -51,8 +53,9 @@ class TestUri(unittest.TestCase):
         result = uv.validate_url(uri)
         try:
             self.assertEqual(result, 0)
+            print("test_uri_invalid_char : Pass", file = sys.stdout)
         except AssertionError:
-            print("test_uri_invalid_char Test Case failed", file = sys.stderr)
+            print("test_uri_invalid_char : Failed", file = sys.stdout)
 
     def test_uri_invalid_ipv4(self):
         '''
@@ -63,8 +66,9 @@ class TestUri(unittest.TestCase):
         result = uv.validate_url(uri)
         try:
             self.assertEqual(result, 0)
+            print("test_uri_invalid_ipv4 : Pass", file = sys.stdout)
         except AssertionError:
-            print("test_uri_invalid_ipv4 Test Case failed", file = sys.stderr)
+            print("test_uri_invalid_ipv4 : Failed", file = sys.stdout)
 
     def test_uri_invalid_port(self):
         '''
@@ -75,8 +79,9 @@ class TestUri(unittest.TestCase):
         result = uv.validate_url(uri)
         try:
             self.assertEqual(result, 0)
+            print("test_uri_invalid_port : Pass", file = sys.stdout)
         except AssertionError:
-            print("test_uri_invalid_port Test Case failed", file = sys.stderr)
+            print("test_uri_invalid_port : Failed", file = sys.stdout)
 
     def test_uri_valid_port(self):
         '''
@@ -87,8 +92,11 @@ class TestUri(unittest.TestCase):
         result = uv.validate_url(uri)
         try:
             self.assertEqual(result, 1)
+            print("test_uri_valid_port : Pass", file = sys.stdout)
         except AssertionError:
-            print("test_uri_invalid_port Test Case failed", file = sys.stderr)
+            print("test_uri_valid_port : Failed", file = sys.stdout)
     
 if __name__ == '__main__':
+    sys.stdout = open('unit_test_result.txt', 'w')
     unittest.main()
+    sys.stdout.close()

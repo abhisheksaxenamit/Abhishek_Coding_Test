@@ -5,7 +5,7 @@ import tldextract
 import sys
 
 
-def contains_invalid(uri_set):
+def contains_invalid(uri):
     '''
         Function to Check whether 'uri' contains ANY of the invalid characters
         Args:
@@ -13,11 +13,12 @@ def contains_invalid(uri_set):
         Returns:
             True: If Invalid characters are Present
             False: None of the invalid characters are present.
-    '''  
+    '''
+    uri_set = set(uri)
     inv_char = ['<' ,'>', '\"','#','{', '}', '|', '\\', '^', '~', '[', ']',  '`']
     for c in inv_char:
         if c in uri_set:
-            print('Uri contains invalid char',c,file=sys.stderr)
+            print('Uri '+ uri + ' contains invalid char',c,file=sys.stderr)
             return True
     return False
 
@@ -42,7 +43,7 @@ def is_valid_ipv4(ipv4):
         return False
     return True
 
-def is_valid_port(port):
+def is_valid_port(p):
     '''
         Validating the port number is in the range 0 to 65535
         Args:
@@ -51,9 +52,9 @@ def is_valid_port(port):
             True: valid port number
             False: invalid port number
     '''
-    if(port > 65535 or port < 0):
-        return False
-    return True
+    if(0 <= p <= 65535):
+        return True
+    return False
 
     
 def validate_url(url):
@@ -77,18 +78,23 @@ def validate_url(url):
         # checking if scheme is correct
         assert up[0] in ['http', 'https', 'ftp']
         # checking if any of the invalid characters are present in the url
-        if(contains_invalid(set(url))):
+        if(contains_invalid(url)):
             return False
         
         # Validating ipv4 address and port number in uri
         if(up.port):
-            ipv4_chk= re.match(r'^\d+\.\d+\.\d+\.\d+:\d+$',up.netloc)
+            # If port is present in the url           
+            ipv4_chk = re.match(r'^\d+\.\d+\.\d+\.\d+:\d+$',up.netloc)
+            print('Abhi: ',ipv4_chk,file=sys.stderr)
             if(ipv4_chk):
-                if(is_valid_ipv4(ipv4_chk.group(0))==False):
+                ipv4_add = re.split(':',ipv4_chk.group(0))[0]
+                print('Abhi: ',ipv4_add,file=sys.stderr)
+                if(is_valid_ipv4(ipv4_add)==False):
                     return False
-            if(is_valid_port(int(up.port)==False)):
+            if(is_valid_port(int(up.port))==False):
                 return False
         else:
+            # If no port is present in the url           
             ipv4_chk= re.match(r'^\d+\.\d+\.\d+\.\d+$',up.netloc)
             if(ipv4_chk):
                 if(is_valid_ipv4(ipv4_chk.group(0))==False):
@@ -117,7 +123,6 @@ def status_code_lst(sc,sc_lst):
             sc_lst: The updated source code list.
     '''
     fnd = 0
-    print("Status_Code: ",sc)
     try:
         for l in sc_lst:
             if(sc == l['Status_code']):
