@@ -22,7 +22,7 @@ To run the code analysis:
   
 
 To check the unit test case inside BBC_Coding_Test/BBC_Coding_test/:
-  - execute: python test_pro.py
-  - the input for all invalid urls are taken from invalid_urls.txt
-  - unit_test_result are created in the BBC_Coding_Test/logs/unit_test_results.txt.
-  - logs for unit testing are created in BBC_Coding_Test/logs/logs_testing.txt
+  - execute: ```python test_pro.py```
+  - the input for all invalid urls are taken from ```invalid_urls.txt```
+  - unit_test_result are created in the ```BBC_Coding_Test/logs/unit_test_results.txt```.
+  - logs for unit testing are created in ```BBC_Coding_Test/logs/logs_testing.txt```
