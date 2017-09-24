@@ -1,0 +1,32 @@
+http://
+http://.
+http://..
+http://../
+http://?
+http://??
+http://??/
+http://#
+http://##
+http://##/
+//
+//a
+///a
+///
+http:///a
+foo.com
+rdar://1234
+h://test
+http:// shouldfail.com
+:// should fail
+http://foo.bar/foo(bar)baz quux
+ftps://foo.bar/
+http://-error-.invalid/
+http://a.b--c.de/
+http://-a.b.co
+http://a.b-.co
+http://1.1.1.1.1
+http://123.123.123
+http://3628126748
+http://.www.foo.bar/
+http://www.foo.bar./
+http://.www.foo.bar./

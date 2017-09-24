@@ -83,20 +83,67 @@ class TestUri(unittest.TestCase):
         except AssertionError:
             print("test_uri_invalid_port : Failed", file = sys.stdout)
 
+    def test_uri_valid_ipv4(self):
+        '''
+            Validating Uris with valid ip address
+            O/p Expected 1 i.e. valid ip address is valid
+        '''
+        uri='http://192.168.22.1/'
+        result = uv.validate_url(uri)
+        try:
+            self.assertEqual(result, 1)
+            print("test_uri_valid_ipv4 : Pass", file = sys.stdout)
+        except AssertionError:
+            print("test_uri_valid_ipv4 : Failed", file = sys.stdout)
+    
+    def test_uri_valid_uri_port(self):
+        '''
+            Validating Uris with valid port address
+            O/p Expected 1 i.e. valid address with port
+        '''
+        uri='http://userid@example.com:8080'
+        result = uv.validate_url(uri)
+        try:
+            self.assertEqual(result, 1)
+            print("test_uri_valid_uri_port : Pass", file = sys.stdout)
+        except AssertionError:
+            print("test_uri_valid_uri_port : Failed", file = sys.stdout)
+
     def test_uri_valid_port(self):
         '''
             Validating Uris with valid port number
             O/p Expected 1 i.e. valid url and port number present in the uri
         '''
-        uri='http://192.168.22.1:6553/'
+        uri='http://google.com:6553/'
         result = uv.validate_url(uri)
         try:
             self.assertEqual(result, 1)
             print("test_uri_valid_port : Pass", file = sys.stdout)
         except AssertionError:
             print("test_uri_valid_port : Failed", file = sys.stdout)
-    
+
+    def test_uri_invalid_uri_doc(self):
+        '''
+            Validating that all the uris in 'invalid_uri.txt' are correctly processed.
+            O/p Expected 0 for all listed uris  i.e. all are invalid uri.
+        '''
+        with open('../invalid_uris.txt','r') as inp:
+            for url in inp:
+                # removing white spaces in the end of the line
+                url = url.rstrip()
+                try:
+                    result = uv.validate_url(url)
+                    try:
+                        self.assertEqual(result, 0)
+                        print("test_uri_invalid_uri_doc Uri("+ url +"): Pass", file = sys.stdout)
+                    except AssertionError:
+                        print("test_uri_invalid_uri_doc Uri("+ url +") : Failed", file = sys.stdout)
+                except Exception as e:
+                    print(e,file=sys.stderr)
+                    
 if __name__ == '__main__':
-    sys.stdout = open('unit_test_result.txt', 'w')
+    sys.stdout = open('../logs/unit_test_results.txt', 'w')
+    sys.stderr = open('../logs/logs_testing.txt', 'a')
     unittest.main()
+    sys.stderr.close()
     sys.stdout.close()

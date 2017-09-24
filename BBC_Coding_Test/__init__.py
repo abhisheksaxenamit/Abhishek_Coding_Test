@@ -72,6 +72,7 @@ if __name__ == '__main__':
         Storing important header information in json files.
         Creating a summary document to store the occurrance of Status Code
     '''
+    sys.stderr = open('../logs/logs_error.txt', 'a')
     count = 0
     sc_lst = [{'Status_code': 200, 'Number_of_responses': 0},{'Status_code': 404, 'Number_of_responses': 0}]
     # Reading data from the Input.txt file
@@ -85,3 +86,4 @@ if __name__ == '__main__':
                 create_json('../output/Summary.json',sc_lst)
             except Exception as e:
                 print(e,file=sys.stderr)
+    sys.stderr.close()
