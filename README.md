@@ -18,7 +18,7 @@ To run the code analysis:
   - Json files are created in the BBC_Coding_Test/output/ folder
       - for each url ```Url_<index>.json``` 
       - ```summary.json``` has all the status code analysis.
-  - logs for error are created in the BBC_Coding_Test/logs/logs_error.txt
+  - logs for error are created in the ```BBC_Coding_Test/logs/logs_error.txt```
   
 
 To check the unit test case inside BBC_Coding_Test/BBC_Coding_test/:
