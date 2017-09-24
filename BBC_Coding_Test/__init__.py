@@ -37,7 +37,8 @@ def uri_resp(url,sc_lst,count):
         data = {}
         if(uv.validate_url(url)):
             try:
-                r = requests.get(url, timeout = 2)
+                # putting timeout of 10 sec
+                r = requests.get(url, timeout = 10)
             except requests.exceptions.Timeout:
                 print("Timeout Occurred for uri ",url,file = sys.stderr)
                 time_out = 1
@@ -57,8 +58,8 @@ def uri_resp(url,sc_lst,count):
                     data.update({'Date' : ''})
         else:
             data={'Url' : url, 'Error' : 'Invalid url'}
+            
         # Writing into the Json file
-
         f_name= '../output/Url_' + str(count) + '.json'
         create_json(f_name,data)
         return sc_lst
