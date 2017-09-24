@@ -37,7 +37,7 @@ def uri_resp(url,sc_lst,count):
         data = {}
         if(uv.validate_url(url)):
             try:
-                r = requests.get(url, timeout = 10)
+                r = requests.get(url, timeout = 2)
             except requests.exceptions.Timeout:
                 print("Timeout Occurred for uri ",url,file = sys.stderr)
                 time_out = 1

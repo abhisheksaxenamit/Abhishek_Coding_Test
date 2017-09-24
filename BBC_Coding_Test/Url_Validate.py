@@ -15,7 +15,7 @@ def contains_invalid(uri):
             False: None of the invalid characters are present.
     '''
     uri_set = set(uri)
-    inv_char = ['<' ,'>', '\"','#','{', '}', '|', '\\', '^', '~', '[', ']','`',' ']
+    inv_char = ['<' ,'>', '\"','{', '}', '|', '\\', '^', '~', '[', ']','`',' ']
     for c in inv_char:
         if c in uri_set:
             print('Uri '+ uri + ' contains invalid char',c,file=sys.stderr)
@@ -80,8 +80,7 @@ def validate_url(url):
         # checking if any of the invalid characters are present in the url
         if(contains_invalid(url)):
             return False
-
-            
+                    
         # Validating ipv4 address and port number in uri
         if(re.match(r'^\d+\.\d+\.\d+\.\d+:\d+$',up.netloc)):
             # If port is present in the url           
@@ -111,8 +110,6 @@ def validate_url(url):
             elif(parse_netloc.domain[0] in ['-','.'] or parse_netloc.suffix[0] in ['-','.'] or parse_netloc.domain[-1] in ['-','.'] or parse_netloc.suffix[-1] in ['-','.']):
                 print("Suffix or domain missing",parse_netloc.domain,'  ',parse_netloc.suffix,file=sys.stdout)
                 return False
-            
-            
             
     except AssertionError:
         print("Assertion Error for Uri ",url,file=sys.stderr)
