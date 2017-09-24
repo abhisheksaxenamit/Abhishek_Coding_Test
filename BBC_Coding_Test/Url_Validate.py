@@ -5,20 +5,20 @@ import tldextract
 import sys
 
 
-def contains_invalid(uri):
+def contains_invalid(url):
     '''
-        Function to Check whether 'uri' contains ANY of the invalid characters
+        Function to Check whether 'url' contains ANY of the invalid characters
         Args:
-            set of elements present in the uri
+            url : str, the http url to be tested.
         Returns:
             True: If Invalid characters are Present
             False: None of the invalid characters are present.
     '''
-    uri_set = set(uri)
+    url_set = set(url)
     inv_char = ['<' ,'>', '\"','{', '}', '|', '\\', '^', '~', '[', ']','`',' ']
     for c in inv_char:
-        if c in uri_set:
-            print('Uri '+ uri + ' contains invalid char',c,file=sys.stderr)
+        if c in url_set:
+            print('url '+ url + ' contains invalid char',c,file=sys.stderr)
             return True
     return False
 
@@ -81,7 +81,7 @@ def validate_url(url):
         if(contains_invalid(url)):
             return False
                     
-        # Validating ipv4 address and port number in uri
+        # Validating ipv4 address and port number in url
         if(re.match(r'^\d+\.\d+\.\d+\.\d+:\d+$',up.netloc)):
             # If port is present in the url           
             ipv4_chk = re.match(r'^\d+\.\d+\.\d+\.\d+:\d+$',up.netloc)
@@ -112,7 +112,7 @@ def validate_url(url):
                 return False
             
     except AssertionError:
-        print("Assertion Error for Uri ",url,file=sys.stderr)
+        print("Assertion Error for url ",url,file=sys.stderr)
         return False
     except Exception as e:
         print(e,file = sys.stderr)
@@ -129,10 +129,10 @@ def status_code_lst(sc,sc_lst):
             }
         This code will either increment the existing Status code list or will add new status code 
         Args:
-            sc: The new Status code recieved in the response
-            sc_lst: The existing list of source code that needs to be updated.
+            sc: int, The new Status code received in the response
+            sc_lst: [], The existing list of source code that needs to be updated.
         Return:
-            sc_lst: The updated source code list.
+            sc_lst: [], The updated source code list.
     '''
     fnd = 0
     try:

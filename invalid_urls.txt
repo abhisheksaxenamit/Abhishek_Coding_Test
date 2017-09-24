@@ -21,7 +21,6 @@ http:// shouldfail.com
 http://foo.bar/foo(bar)baz quux
 ftps://foo.bar/
 http://-error-.invalid/
-http://a.b--c.de/
 http://-a.b.co
 http://a.b-.co
 http://1.1.1.1.1

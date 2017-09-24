@@ -8,8 +8,8 @@ def create_json(fname,data):
         For creating a json file
 
         Args:
-            fname = file name to be written
-            data = data that needs to be dumped
+            fname = str, file name to be written
+            data = dict, data that needs to be dumped
     '''
     try:
         with open(fname, 'w') as outfile:
@@ -18,19 +18,19 @@ def create_json(fname,data):
         print(e,file=sys.stderr)
         
     
-def uri_resp(url,sc_lst,count):
+def url_resp(url,sc_lst,count):
     '''
-        Validating the uri
+        Validating the 
         storing the response
         updating the status code summarry list
 
         Args:
-            url = Uri thats needs to be processed
-            sc_lst = existing status code list that needs to be updated
-            count = the index of the url in the Input file.
+            url = str, url thats needs to be processed
+            sc_lst = [],existing status code list that needs to be updated
+            count = int, the index of the url in the Input file.
 
         Return:
-            sc_lst = updated status code list
+            sc_lst = [], updated status code list
     '''
     try:
         time_out = 0
@@ -40,7 +40,7 @@ def uri_resp(url,sc_lst,count):
                 # putting timeout of 10 sec
                 r = requests.get(url, timeout = 10)
             except requests.exceptions.Timeout:
-                print("Timeout Occurred for uri ",url,file = sys.stderr)
+                print("Timeout Occurred for url ",url,file = sys.stderr)
                 time_out = 1
             if(time_out == 0):
                 sc_lst=uv.status_code_lst(r.status_code,sc_lst)
@@ -82,7 +82,7 @@ if __name__ == '__main__':
         # removing white spaces in the end of the line      
         url = url.rstrip()
         try:
-            sc_lst=uri_resp(url,sc_lst,count)
+            sc_lst=url_resp(url,sc_lst,count)
             count += 1
             create_json('../output/Summary.json',sc_lst)
         except Exception as e:
