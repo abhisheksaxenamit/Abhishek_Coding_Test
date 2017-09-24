@@ -71,10 +71,22 @@ class TestUri(unittest.TestCase):
             Validating Uris with invalid port number
             O/p Expected 0 i.e. invalid port number present in the uri
         '''
-        uri='http://192.168.22.1:6553/'
+        uri='http://192.168.22.1:65536/'
         result = uv.validate_url(uri)
         try:
             self.assertEqual(result, 0)
+        except AssertionError:
+            print("test_uri_invalid_port Test Case failed", file = sys.stderr)
+
+    def test_uri_valid_port(self):
+        '''
+            Validating Uris with valid port number
+            O/p Expected 1 i.e. valid url and port number present in the uri
+        '''
+        uri='http://192.168.22.1:6553/'
+        result = uv.validate_url(uri)
+        try:
+            self.assertEqual(result, 1)
         except AssertionError:
             print("test_uri_invalid_port Test Case failed", file = sys.stderr)
     
