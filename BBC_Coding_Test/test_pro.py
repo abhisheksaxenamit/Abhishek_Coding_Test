@@ -32,17 +32,18 @@ class TestUri(unittest.TestCase):
             print("test_uri_wrong_scheme : Failed", file = sys.stdout)
             
 
-##    def test_uri_wrong_tld(self):
-##        '''
-##            Validating Uris with no netloc tld i.e .com, .net etc
-##            O/p Expected 0 i.e. tld is wrong
-##        '''
-##        uri='http://bbc1234'
-##        result = uv.validate_url(uri)
-##        try:
-##            self.assertEqual(result, 0)
-##        except AssertionError:
-##            print("test_uri_wrong_tld Test Case failed", file = sys.stderr)
+    def test_uri_wrong_suffix(self):
+        '''
+            Validating Uris with no netloc tld i.e .com, .net etc
+            O/p Expected 0 i.e. tld is wrong
+        '''
+        uri='http://bbc1234'
+        result = uv.validate_url(uri)
+        try:
+            self.assertEqual(result, 0)
+            print("test_uri_wrong_suffix : Pass", file = sys.stdout)
+        except AssertionError:
+            print("test_uri_wrong_suffix : Failed", file = sys.stdout)
 
     def test_uri_invalid_char(self):
         '''

@@ -74,17 +74,18 @@ if __name__ == '__main__':
         Creating a summary document to store the occurrance of Status Code
     '''
     sys.stderr = open('../logs/logs_error.txt', 'a')
+    sys.stdin = open('../Input.txt','r')
     count = 0
     sc_lst = [{'Status_code': 200, 'Number_of_responses': 0},{'Status_code': 404, 'Number_of_responses': 0}]
-    # Reading data from the Input.txt file
-    with open('../Input.txt','r') as inp:
-        for url in inp:
-            # removing white spaces in the end of the line      
-            url = url.rstrip()
-            try:
-                sc_lst=uri_resp(url,sc_lst,count)
-                count += 1
-                create_json('../output/Summary.json',sc_lst)
-            except Exception as e:
-                print(e,file=sys.stderr)
+    # Reading data from the stdin file
+    for url in sys.stdin:
+        # removing white spaces in the end of the line      
+        url = url.rstrip()
+        try:
+            sc_lst=uri_resp(url,sc_lst,count)
+            count += 1
+            create_json('../output/Summary.json',sc_lst)
+        except Exception as e:
+            print(e,file=sys.stderr)
     sys.stderr.close()
+    sys.stdin.close()

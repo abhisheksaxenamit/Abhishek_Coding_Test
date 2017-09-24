@@ -108,7 +108,7 @@ def validate_url(url):
                 print("Suffix or domain missing",url,file=sys.stderr)
                 return False
             elif(parse_netloc.domain[0] in ['-','.'] or parse_netloc.suffix[0] in ['-','.'] or parse_netloc.domain[-1] in ['-','.'] or parse_netloc.suffix[-1] in ['-','.']):
-                print("Suffix or domain missing",parse_netloc.domain,'  ',parse_netloc.suffix,file=sys.stdout)
+                print("Invalid Suffix or domain",file=sys.stderr)
                 return False
             
     except AssertionError:
