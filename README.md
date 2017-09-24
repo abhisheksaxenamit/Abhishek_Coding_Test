@@ -16,7 +16,7 @@ To run the code analysis:
   - cd BBC_Coding_Test
   - execute: python __init__.py
   - Json files are created in the BBC_Coding_Test/output/ folder
-      - for each url Url_<index>.json 
+      - for each url Url_```<index>```.json 
       - summary.json has all the status code analysis.
   - logs for error are created in the BBC_Coding_Test/logs/logs_error.txt
   
