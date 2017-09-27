@@ -9,7 +9,7 @@ Dependencies:
     
 To install all dependencies:
   - Extract the files and go inside BBC_Coding_Test to check for setup.py
-  - execute: ```pip install -e <Complete local path to setup.py>```
+  - execute: ```pip install -e <Complete local path to setup.py, Till folder ex ../BBC_Coding_Test/BBC_Coding_Test/>```
   
 To run the code analysis:
   - Here Input.txt contains all the urls that need to be verified.
